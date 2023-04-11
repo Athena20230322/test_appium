@@ -25,7 +25,7 @@ class TestClass:
         global driver
         driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
-        close_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/dialog_negative_btn")
+        close_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/close_btn")
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(close_btn_locator)).click()
 
         account_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("我的帳戶")')
@@ -75,10 +75,10 @@ class TestClass:
         #time.sleep(5)
         homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
-        #time.sleep(3)
+        #time.sleep(120)
         #彈出關閉 截圖提醒
-       # popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-       # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
        # time.sleep(3)
         # 點選熱銷排行
         hotInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("熱銷排行")')
@@ -103,8 +103,8 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep2)).click()
         time.sleep(3)
         # 彈出關閉
-        #popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
         #領折價券
         discountcoupon_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/brand_link_btn2')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountcoupon_locator)).click()
@@ -115,8 +115,8 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep3)).click()
        # time.sleep(5)
         #彈出關閉
-       # popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-       # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
         #time.sleep(3)
 
         #點數兌換
@@ -147,8 +147,8 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
        # time.sleep(5)
         # 彈出關閉
-        #popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
         #time.sleep(3)
 
         # 買一送一
@@ -162,8 +162,8 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
        # time.sleep(5)
         # 等待關閉按鈕出現
-       # popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-       # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
         #點擊關閉按鈕
 
 
@@ -202,8 +202,8 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
         # time.sleep(5)
         # 彈出關閉
-       # popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-       # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
         # time.sleep(3)
 
         # 買二送二
