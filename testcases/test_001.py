@@ -25,6 +25,7 @@ class TestClass:
         global driver
         driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
+        #close_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/dialog_negative_btn")
         close_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/close_btn")
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(close_btn_locator)).click()
 
@@ -45,7 +46,16 @@ class TestClass:
         passwd_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/id_btn_input_passwd")
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(passwd_btn_locator)).click()
 
-        time.sleep(3)
+        #重複的程式碼可以將重複的程式碼抽出成函式，減少程式碼量和提高程式碼的可維護性。
+        #例如，以下程式碼中，點擊"首頁"
+        #按鈕和關閉"彈窗"的部分程式碼被多次使用
+    def go_to_home(self,driver):
+        homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
+
+    def close_popup(self,driver):
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
 
 
         # agree_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("同意")')
@@ -65,7 +75,6 @@ class TestClass:
         #driver.find_element(MobileBy.XPATH,'//android.widget.RelativeLayout[@content-desc="苏宁超市"]/android.widget.ImageView').click()
         # newcomm_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("手机数码")')
         # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(newcomm_locator)).click()
-       # time.sleep(3)
 
     def test_001(self):
         # 獲取登入後eshop會員卡
@@ -73,13 +82,15 @@ class TestClass:
         home_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_name_locator))).text
         print(home_name)
         #time.sleep(5)
-        homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
-        #time.sleep(120)
+        self.go_to_home(driver)
+        self.close_popup(driver)
+        #homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
+
         #彈出關閉 截圖提醒
-        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
-       # time.sleep(3)
+        #popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+
         # 點選熱銷排行
         hotInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("熱銷排行")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(hotInfo_locator)).click()
@@ -87,13 +98,8 @@ class TestClass:
         # 獲取折扣活動
         discountInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("折扣活動")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountInfo_locator)).click()
-       # time.sleep(2)
-        #
-        # # 获取详情页商品名称
-        # pageInfo_name_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/tv_1')
-        # pageInfo_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(pageInfo_name_locator))).text
-        # print(pageInfo_name)
-        #
+
+
         # # 断言首页商品名称等于详情页商品名称
         # assert home_name == pageInfo_name, f"预期名称为{home_name}，实际结果为{pageInfo_name}"
 
@@ -103,8 +109,9 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep2)).click()
         time.sleep(3)
         # 彈出關閉
-        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        self.close_popup(driver)
+        #popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
         #領折價券
         discountcoupon_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/brand_link_btn2')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountcoupon_locator)).click()
@@ -115,8 +122,9 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep3)).click()
        # time.sleep(5)
         #彈出關閉
-        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        self.close_popup(driver)
+        #popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
         #time.sleep(3)
 
         #點數兌換
@@ -131,9 +139,9 @@ class TestClass:
         # 修改密碼
         # changepw = (MobileBy.XPATH, '//android.widget.FrameLayout[@content-desc="memberChangePwBtn"]/android.widget.RelativeLayout/android.widget.TextView')
         # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(changepw)).click()
-        # time.sleep(3)
+
         # driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("原始密碼")').send_keys("dlink5229")
-        # time.sleep(3)
+
         # driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("輸入新密碼6-20碼英數字")').send_keys("icash1234")
         # time.sleep(3)
         # driver.find_element(MobileBy.ID, "com.nineyi.shop.s002131:id/id_btn_next").click()
@@ -147,8 +155,9 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
        # time.sleep(5)
         # 彈出關閉
-        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        self.close_popup(driver)
+        #popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
         #time.sleep(3)
 
         # 買一送一
@@ -162,8 +171,9 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
        # time.sleep(5)
         # 等待關閉按鈕出現
-        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        self.close_popup(driver)
+        #popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
         #點擊關閉按鈕
 
 
@@ -178,12 +188,8 @@ class TestClass:
         item_price_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("NT$420")')
         item_price_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(item_price_locator))
 
-
-
-
         #獲取商品價格本文
         item_price_text = item_price_element.text
-
         # 定義期望價格
         expected_price = "NT$410"
 
@@ -202,17 +208,15 @@ class TestClass:
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
         # time.sleep(5)
         # 彈出關閉
-        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
-        # time.sleep(3)
+        self.close_popup(driver)
+        #popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        #WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
 
         # 買二送二
         buyonegetpone_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_leftbb')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(buyonegetpone_locator)).click()
         #driver.find_element(MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_leftbb').click()
-    # time.sleep(4)
-
-    # time.sleep(3)
+  
 
         #設定手機條碼載具
         #driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/memberzone_item_title').click()
