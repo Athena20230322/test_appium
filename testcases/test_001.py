@@ -81,7 +81,7 @@ class TestClass:
         home_name_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/membercard_card_front_img")
         home_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_name_locator))).text
         print(home_name)
-        #time.sleep(5)
+        time.sleep(3)
         self.go_to_home(driver)
         self.close_popup(driver)
         #homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
