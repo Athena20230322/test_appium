@@ -34,6 +34,7 @@ class TestClass:
 
         phone_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/id_et_input")
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(phone_locator)).send_keys("0919541317")
+        time.sleep(2)
 
         login_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/id_btn_login")
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(login_btn_locator)).click()
@@ -120,7 +121,7 @@ class TestClass:
     def test_003(self):
         homep3 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep3)).click()
-       # time.sleep(5)
+        #time.sleep(5)
         #彈出關閉
         self.close_popup(driver)
         #popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
